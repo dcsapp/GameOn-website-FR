@@ -57,14 +57,17 @@
         <div class="content">
           <span class="close"></span>
           <div class="modal-body">
+            <!-- rmk: novalidate tag in form disable browser validation -->
             <form
               name="reserve"
-              action="index.html"
+              action=""
               method="get"
+              novalidate 
               onsubmit="return validate();"
             >
               <div
-                class="formData">
+                class="formData"
+                >
                 <label>Prénom</label><br>
                 <input
                   class="text-control"
@@ -210,6 +213,14 @@
             </form>
           </div>
         </div>
+
+        <div class="formConfirmation">
+          <div class="info">
+            <h2>Merci! Votre réservation a été reçue.</h2>
+          </div>
+        </div>
+
+
       </div>
     </main>
     <footer>
