@@ -12,24 +12,13 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 // ------------------------------------------------------------
-const modalContent = document.querySelector(".content")
+const modalContent = document.querySelector(".modal-body");
+const modalConfirmation = document.querySelector(".formConfirmation");
 const formInput = document.querySelectorAll("input");
-/* const checkBoxLocation = document.getElementsByName("radio"); */
-/* 
-const locationChecked = document.querySelector(
-  'input[type="radio"][name="location"]:checked'
-).value;
- */
-console.log("formData", formData[1]);
-console.log(formInput);
-/* console.log("Locations", locationChecked); */
 
-/* formInput.forEach((inp) => console.log('id',formInput[inp].id)); */
+// ----
 
-console.log("id", formInput[0].id);
-const toto = formInput[0].id;
-
-console.log("node", formData[0]);
+// const formRegistration = document.querySelector("form");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -39,28 +28,50 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
-// close modal without update OK
+// close modal without updating
 function closeModal() {
   modalbg.style.display = "none";
 }
-const closeModalBtn = document.querySelector(".close");
-closeModalBtn.addEventListener("click", closeModal);
+// Select and add an event listener to each close modal X (2: form and confirmation)
+const closeModalBtn = document.querySelectorAll(".close");
+console.log("close buttons", closeModalBtn);
 
+closeModalBtn.forEach(function (btn) {
+  btn.addEventListener("click", closeModal());
+});
+
+// Form submission
+// submit form button triggers validate function
 const form = document.querySelector("#form");
-console.log(form);
-/* 
-const form = document.getElementById('reserve');
-form.addEventListener('submit', e => {
-  e.preventDefault();
-  validate();
-}) */
+form.addEventListener("submit", function (e) {
+  validate(e);
+});
 
+// Button handling
+function closeConfirmationModal() {
+  modalConfirmation.style.display = "none";
+}
+// Confirmation modal
+const btnCloseConfirmation = document.querySelector(".btn-closeConfirmation");
+btnCloseConfirmation.addEventListener("click", closeConfirmationModal);
 
-function focusBlur() {
-  alert('focus lost')
+function dobValidation(minAge, dob) {
+  const today = new Date();
+  console.log("today", today.toISOString());
+  const birthdate = new Date(dob);
+  console.log("birthdate", birthdate.getFullYear());
+  /* 
+  If year difference is > or < minAge return false
+  If difference = minAge 
+  - check month 
+  - check date 
+  */
 }
 
-function validate() {
+dobValidation(15, "1960-01-01");
+
+function validate(e) {
+  e.preventDefault();
   /* Retrieve input fields */
   let firstname = document.getElementById("first");
   let lastname = document.getElementById("last");
@@ -80,10 +91,9 @@ function validate() {
 
   /* Firstname validation: min caracteres = 2 */
   /* console.log("field input",input.firstname) */
-  
+
   if (firstnameValue.length < 3) {
-    errorMessage =
-      "Veuillez entrer 2 caractères ou plus pour le champ Prénom";
+    errorMessage = "Veuillez entrer 2 caractères ou plus pour le champ Prénom";
     displayError(firstname, errorMessage);
   } else {
     removeError(firstname);
@@ -112,7 +122,7 @@ function validate() {
   /\d{4}$(\-)(((0)[0-9])|((1)[0-2]))(\-)([0-2][0-9]|(3)[0-1])/ */
   // TODO! Date validation: check if age at least 18 years old ??
   if (birthdateValue != "") {
-    console.log('date: ',birthdateValue)
+    console.log("date: ", birthdateValue);
     removeError(birthdate);
   } else {
     errorMessage = "Veuillez entrer une date valide";
@@ -120,8 +130,9 @@ function validate() {
   }
 
   /*  Number of participation(s): from 0 to 99 */
-  const numReg = /[0-9]{1,2}/;
+  const numReg = /^([0-9]{1,2})$/;
   errorMessage = "Veuillez entrer une valeur entre 0 et 99";
+  console.log("ff", quantityValue.match(numReg));
   if (quantityValue.match(numReg)) {
     removeError(quantity);
   } else {
@@ -130,7 +141,7 @@ function validate() {
 
   /* location: check if a location has been selected */
   let location = document.getElementsByName("location");
-  console.log('location: ', location)
+  console.log("location: ", location);
   let locationValue = "";
   // Check for each location if one has been checked
   for (let i = 0; i < location.length; i++) {
@@ -145,9 +156,8 @@ function validate() {
   } else {
     removeError(location[0]);
   }
-  console.log("location", locationValue);
 
-  /*  Conditions d'utilisation  */
+  /*  Use conditions checkbox */
   if (checkbox1.checked === false) {
     /* alert('Not OK'); */
     errorMessage = "Veuillez accepter les conditions";
@@ -158,16 +168,36 @@ function validate() {
 
   /*  Get info about next events */
   if (checkbox2.checked === true) {
-    console.log("event info: ", checkbox2.value)
-  } 
-
+    console.log("event info: ", checkbox2.value);
+  }
 
   const formError = document.querySelectorAll(".formData[data-error]");
   console.log("Nbre error", formError.length);
   if (formError.length > 0) {
     return false;
   } else {
-    alert("Form OK!!")
+    modalbg.style.display = "none";
+    modalConfirmation.style.display = "flex";
+
+    /* 
+    formRegistration.onsubmit = function(event) {
+      console.log("event1", event);
+      alert("Form submited");
+      event.preventDefault();
+      console.log("event2", event);
+      displayConfirmation();
+    }
+ */
+
+    /* 
+    formRegistration.addEventListener(
+      "onsubmit", function (e) {
+        e.preventDefault();
+        console.log("prevent", e)
+        displayConfirmation();
+
+      } );
+     */
   }
 }
 
@@ -177,7 +207,7 @@ function validate() {
 function displayError(inputField, errorMessage) {
   // highlight field border in red and display error message
   // Retrieve input field's parent class (formData)
-  console.log('input', inputField);
+  console.log("input", inputField);
   const formControl = inputField.parentElement;
   // insert attributes to field's parent class
   formControl.dataset.error = errorMessage;
