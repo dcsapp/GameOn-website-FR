@@ -7,7 +7,7 @@ function editNav() {
   }
 }
 
-// DOM Elements
+// D O M  E L E M E N T S
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
@@ -16,10 +16,7 @@ const modalContent = document.querySelector(".modal-body");
 const modalConfirmation = document.querySelector(".formConfirmation");
 const formInput = document.querySelectorAll("input");
 
-// ----
-
-// const formRegistration = document.querySelector("form");
-
+// B U T T O N S
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
@@ -29,24 +26,16 @@ function launchModal() {
 }
 
 // close modal without updating
-function closeModal() {
-  modalbg.style.display = "none";
-}
-// Select and add an event listener to each close modal X (2: form and confirmation)
+// 1-Select close button
 const closeModalBtn = document.querySelectorAll(".close");
-console.log("close buttons", closeModalBtn);
-
+// 2-Add an eventListener to each button/.close to trigger function closeModal()
 closeModalBtn.forEach(function (btn) {
-  btn.addEventListener("click", closeModal());
+  btn.addEventListener("click", closeModal);
 });
 
-// Form submission
-// submit form button triggers validate function
-const form = document.querySelector("#form");
-form.addEventListener("submit", function (e) {
-  validate(e);
-});
-
+function closeModal() {
+  this.parentElement.parentElement.style.display = "none";
+}
 // Button handling
 function closeConfirmationModal() {
   modalConfirmation.style.display = "none";
@@ -55,23 +44,37 @@ function closeConfirmationModal() {
 const btnCloseConfirmation = document.querySelector(".btn-closeConfirmation");
 btnCloseConfirmation.addEventListener("click", closeConfirmationModal);
 
+// F O R M  S U B M I S S I O N
+// Prevent form submission
+const form = document.getElementById("form");
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+});
+
+// Regex used in validation form fields
+const regName =
+  /^([a-zA-Zçêëöéè]{2,20})(([\s|\-]{1})([aa-zA-Zçêëöéè]{2,20})?)?$/i;
+// Accept composed firstname with - in between and multiple name with at at least 2 caracters and max 20
+const regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+const regDate = /^\d{4}-[01][0-9]-[0123][0-9]$/;
+const regNum = /^([0-9]{1,2})$/;
+
+// Date validation
 function dobValidation(minAge, dob) {
-  const today = new Date();
-  console.log("today", today.toISOString());
-  const birthdate = new Date(dob);
-  console.log("birthdate", birthdate.getFullYear());
-  /* 
-  If year difference is > or < minAge return false
-  If difference = minAge 
-  - check month 
-  - check date 
-  */
+  // Get form submission date - today (ms)
+  const today = Date.now();
+  // Transform birthdate (dob) from the form in ms
+  const birthdate = new Date(dob).getTime();
+  // Get current Age
+  const currentAge = new Date(today - birthdate).getFullYear() - 1970;
+  if (currentAge >= minAge && currentAge <= 100) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
-dobValidation(15, "1960-01-01");
-
-function validate(e) {
-  e.preventDefault();
+function validate() {
   /* Retrieve input fields */
   let firstname = document.getElementById("first");
   let lastname = document.getElementById("last");
@@ -88,60 +91,59 @@ function validate(e) {
   /* let location = document.getElementById("location").value; */
 
   let errorMessage = "";
-
   /* Firstname validation: min caracteres = 2 */
   /* console.log("field input",input.firstname) */
-
-  if (firstnameValue.length < 3) {
+  /* if (firstnameValue.length < 3) { */
+  if (!regName.test(firstnameValue)) {
     errorMessage = "Veuillez entrer 2 caractères ou plus pour le champ Prénom";
     displayError(firstname, errorMessage);
   } else {
     removeError(firstname);
   }
 
-  /* Lastname validation min caracteres = 2 */
-  if (lastnameValue.length < 3) {
-    errorMessage = "Veuillez entrer 2 caractères ou plus pour le champ Nom";
+  /* Lastname validation min caracteres = 2 / Max 20 */
+  errorMessage = "Veuillez entrer 2 caractères ou plus pour le champ Nom";
+  if (!regName.test(lastnameValue)) {
     displayError(lastname, errorMessage);
   } else {
     removeError(lastname);
   }
 
   /* Email validation  */
-  let emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   errorMessage = "Veuillez entrer une adressse email valide";
-  if (emailValue.match(emailReg)) {
-    removeError(email);
-  } else {
+  if (!regEmail.test(emailValue)) {
     displayError(email, errorMessage);
+  } else {
+    removeError(email);
   }
 
   /* Date validation */
-  let dateReg = /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/; // format dd/mm/yyyy
-  /* /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/
-  /\d{4}$(\-)(((0)[0-9])|((1)[0-2]))(\-)([0-2][0-9]|(3)[0-1])/ */
-  // TODO! Date validation: check if age at least 18 years old ??
-  if (birthdateValue != "") {
-    console.log("date: ", birthdateValue);
+  // 1 - Check if date format is correct -> regDate
+  // 2 - Once format is correct check if age is >= 15 and under 100
+  const minAge = 15;
+  if (!regDate.test(birthdateValue)) {
+    errorMessage = "Veuillez entrer une date valide";
+    displayError(birthdate, errorMessage);
+  } else if (dobValidation(minAge, birthdateValue)) {
     removeError(birthdate);
   } else {
-    errorMessage = "Veuillez entrer une date valide";
+    errorMessage =
+      "Vous devez avoir au moins " +
+      minAge +
+      " ans et moins de 100 ans pour vous inscrire";
     displayError(birthdate, errorMessage);
   }
 
   /*  Number of participation(s): from 0 to 99 */
-  const numReg = /^([0-9]{1,2})$/;
   errorMessage = "Veuillez entrer une valeur entre 0 et 99";
-  console.log("ff", quantityValue.match(numReg));
-  if (quantityValue.match(numReg)) {
-    removeError(quantity);
-  } else {
+  if (!regNum.test(quantityValue)) {
     displayError(quantity, errorMessage);
+  } else {
+    removeError(quantity);
   }
 
   /* location: check if a location has been selected */
   let location = document.getElementsByName("location");
-  console.log("location: ", location);
   let locationValue = "";
   // Check for each location if one has been checked
   for (let i = 0; i < location.length; i++) {
@@ -167,47 +169,26 @@ function validate(e) {
   }
 
   /*  Get info about next events */
-  if (checkbox2.checked === true) {
-    console.log("event info: ", checkbox2.value);
+  if (!checkbox2.checked) {
+    checkbox2.checked = false;
+  } else {
+    checkbox2.checked = true;
   }
 
+  // Check if any error remains  /  If not, form is validated
   const formError = document.querySelectorAll(".formData[data-error]");
-  console.log("Nbre error", formError.length);
   if (formError.length > 0) {
     return false;
   } else {
     modalbg.style.display = "none";
     modalConfirmation.style.display = "flex";
-
-    /* 
-    formRegistration.onsubmit = function(event) {
-      console.log("event1", event);
-      alert("Form submited");
-      event.preventDefault();
-      console.log("event2", event);
-      displayConfirmation();
-    }
- */
-
-    /* 
-    formRegistration.addEventListener(
-      "onsubmit", function (e) {
-        e.preventDefault();
-        console.log("prevent", e)
-        displayConfirmation();
-
-      } );
-     */
   }
 }
 
-// Form error handling processes
-// ===========================================
-//
+// F O R M  E R R O R  H A N D L I N G  D I S P L A Y
 function displayError(inputField, errorMessage) {
   // highlight field border in red and display error message
   // Retrieve input field's parent class (formData)
-  console.log("input", inputField);
   const formControl = inputField.parentElement;
   // insert attributes to field's parent class
   formControl.dataset.error = errorMessage;

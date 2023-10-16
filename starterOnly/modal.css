@@ -1,5 +1,23 @@
+@font-face {
+  font-family: "DMSans-Regular";
+  src: url(./DM_Sans/DMSans-Regular.ttf) format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DMSans-Medium";
+  src: 
+    local("DMSans-Medium"),
+    url(./DM_Sans/DMSans-Medium.ttf) format('ttf');
+  font-weight: medium;
+  font-style: medium;
+}
+
+/*  --font-default: "DM Sans", Arial, Helvetica, sans-serif; */
+
 :root {
-  --font-default: "DM Sans", Arial, Helvetica, sans-serif;
+  --font-default: "DMSans-Regular", Arial, Helvetica, sans-serif;
   --font-slab: var(--font-default);
   --modal-duration: 0.8s;
 }
@@ -167,7 +185,8 @@ main {
   height: 100%;
   width: 100%;
   overflow: auto;
-  background-color: rgba(26, 39, 156, 0.4);
+  /* background-color: rgba(26, 39, 156, 0.4); */
+  background-color: #fff;
 }
 
 
@@ -345,7 +364,7 @@ input[data-error]::after {
 .formConfirmationContent {
   margin: 5% auto;
   width: 100%;
-  min-height: 850px;
+  min-height: 800px;
   max-width: 500px;
 
   display: flex;
@@ -353,7 +372,6 @@ input[data-error]::after {
   justify-content: center;
   align-items: center;
   
-
   animation-name: modalopen;
   animation-duration: var(--modal-duration);
   background: #232323;
@@ -365,7 +383,6 @@ input[data-error]::after {
 
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
 
-
   position: relative; /* In order to diplay close X */
 }
 
@@ -375,7 +392,7 @@ input[data-error]::after {
 }
 
 .info h2 {
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DMSans-Regular";
   font-size: 36px;
   font-weight: 400; /* regular */
   color: #fff;

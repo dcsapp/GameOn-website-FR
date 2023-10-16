@@ -4,14 +4,14 @@
     <meta charset="utf-8" />
     <title>Reservation</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-
+   <!-- 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Roboto+Slab:wght@500&display=swap"
       rel="stylesheet"
     />
-    <!-- 
+ 
       font-family: 'DM Sans', sans-serif;
       font-family: 'Roboto Slab', serif;
      -->
@@ -68,16 +68,22 @@
           <span class="close"></span>
           <div class="modal-body">
             <!-- rmk: novalidate tag in form disable browser validation -->
-            <!-- 
+           
             <form
+              id="form"
               name="reserve"
               action="#"
               method="get"
-              novalidate 
               onsubmit="return validate(); "
+              novalidate 
+              autocomplete="off"
             >
+             <!-- 
+            <form 
+              novalidate 
+              autocomplete="off" 
+              id="form">
              -->
-            <form novalidate id="form">
               <div class="formData">
                 <label>Prénom</label><br />
                 <input
@@ -86,7 +92,7 @@
                   id="first"
                   name="first"
                   minlength="2"
-                  value="azerty"
+                  value=""
                 /><br />
               </div>
               <div class="formData">
@@ -97,7 +103,7 @@
                   id="last"
                   name="last"
                   minlength="2"
-                  value="qwerty"
+                  value=""
                 /><br />
               </div>
               <div class="formData">
@@ -117,7 +123,7 @@
                   type="date"
                   id="birthdate"
                   name="birthdate"
-                  value="2000-01-01"
+                  value="1960-01-01"
                 /><br />
               </div>
               <div class="formData">
