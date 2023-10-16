@@ -7,6 +7,15 @@ function editNav() {
   }
 }
 
+// U P D A T E  A C T I V E  N A V  L I N K S
+const navLinks = document.querySelectorAll(".main-navbar a");
+navLinks.forEach((navLink) => {
+  navLink.addEventListener("click", () => {
+    document.querySelector(".active").classList.remove("active");
+    this.classList.add("active");
+  });
+});
+
 // D O M  E L E M E N T S
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
