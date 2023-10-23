@@ -1,24 +1,9 @@
-@font-face {
-  font-family: "DMSans-Regular";
-  src: local("DMSans-Regular") url(./DM_Sans/DMSans-Regular.ttf) format("ttf");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "DMSans-Medium";
-  src: local("DMSans-Medium"), url(./DM_Sans/DMSans-Medium.ttf) format("ttf");
-  font-weight: medium;
-  font-style: medium;
-}
-
-/*  --font-default: "DM Sans", Arial, Helvetica, sans-serif; */
-
 :root {
-  --font-default: "DMSans-Regular", Arial, Helvetica, sans-serif;
+  --font-default: "DM Sans", Arial, Helvetica, sans-serif;
   --font-slab: var(--font-default);
   --modal-duration: 0.8s;
 }
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -64,8 +49,8 @@ img {
   padding: 12px 12px;
   margin: 5px;
   text-decoration: none;
-  font-size: 20px;
-  font-family: Roboto, sans-serif;
+  font-size: clamp(9px, 10vw, 20px);
+  font-family: "Roboto", sans-serif;
 }
 
 .topnav a:hover {
@@ -324,9 +309,13 @@ input[data-error]::after {
 /* ========= Confirmation modal Specific CSS ============= */
 .formConfirmationContent {
   margin: 5% auto;
-  width: 100%;
-  min-height: 800px;
-  max-width: 500px;
+ /*  width: 100%; */
+
+ width: 536px;
+ height: 850.61px;
+
+  /* min-height: 800px;
+  max-width: 500px; */
 
   display: flex;
   flex-direction: column;
@@ -348,13 +337,13 @@ input[data-error]::after {
 }
 
 .info {
-  width: 300px;
+  width: 280px;
 }
 
 .info h2 {
-  font-family: "DMSans-Regular";
+  font-family: 'DM Sans', sans-serif; /* var(--font-default);  "DMSans-Regular"; */
   font-size: 36px;
-  font-weight: 400; /* regular */
+  font-weight: normal 400; /* regular */
   color: #fff;
   line-height: 142.6%;
   text-align: center;
@@ -582,12 +571,20 @@ footer {
 }
 
 @media screen and (max-width: 768px) {
+
   .topnav a {
     display: none;
-  }
+  } 
+
+  /* .topnav a.icon {
+    color: #ff0018;
+  } */
+
   .topnav a.icon {
     float: right;
     display: block;
+
+    color: #ff0018;
   }
 }
 
@@ -595,11 +592,12 @@ footer {
   .topnav a {
     display: none;
   }
+  /* 
   .topnav a.icon {
     float: right;
     display: block;
     margin-top: -15px;
-  }
+  } */
 }
 
 @media screen and (max-width: 414px) {
@@ -608,9 +606,15 @@ footer {
     padding: 0;
     height: 100%;
   }
-
+/* 
   .topnav a.icon {
     color: #ff0018;
+  } */
+
+  .topnav a.icon {
+    float: right;
+    display: block;
+    margin-top: -15px;
   }
 
   .hero-content {
@@ -641,13 +645,21 @@ footer {
     float: left;
   }
 
+  .formConfirmationContent {
+    margin: 5% auto;
+   /*  width: 100%; */
+  /* 
+   width: 536px;
+   height: 850.61px; */
+  }
+
   .formConfirmation,
   .bground {
     display: none;
     position: fixed;
     z-index: 1;
     left: 0;
-    top: 50px;
+    top: 79px;
     height: 100%;
     width: 100%;
     overflow: auto;

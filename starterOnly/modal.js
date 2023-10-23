@@ -7,14 +7,19 @@ function editNav() {
   }
 }
 
+// R E S P O N S I V E  L I S T E N E R
+if (window.innerWidth <= 768) {
+  editNav();
+}
+
 // U P D A T E  A C T I V E  N A V  L I N K S
-const navLinks = document.querySelectorAll(".main-navbar a");
+/* const navLinks = document.querySelectorAll(".main-navbar a");
 navLinks.forEach((navLink) => {
   navLink.addEventListener("click", () => {
     document.querySelector(".active").classList.remove("active");
     this.classList.add("active");
   });
-});
+}); */
 
 // D O M  E L E M E N T S
 const modalbg = document.querySelector(".bground");
@@ -62,7 +67,7 @@ form.addEventListener("submit", (e) => {
 
 // Regex used in validation form fields
 const regName =
-  /^([a-zA-Zçêëöéè]{2,20})(([\s|\-]{1})([aa-zA-Zçêëöéè]{2,20})?)?$/i;
+  /^([a-zA-Zçêëöéè]{2,20})(([\s|\-]{1})([a-zA-Zçêëöéè]{2,20})?)?$/i;
 // Accept composed firstname with - in between and multiple name with at at least 2 caracters and max 20
 const regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const regDate = /^\d{4}-[01][0-9]-[0123][0-9]$/;
