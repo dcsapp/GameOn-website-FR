@@ -29,6 +29,9 @@ p {
 
 img {
   padding-right: 1rem;
+  /*  */
+  padding-top: 12px;
+  width: clamp(103px, 20vw, 266px); 
 }
 
 .topnav {
@@ -38,9 +41,12 @@ img {
 .header-logo {
   float: left;
 }
+
+/*  N A V I G A T I O N  */
 .main-navbar {
   float: right;
 }
+
 .topnav a {
   float: left;
   display: block;
@@ -49,7 +55,8 @@ img {
   padding: 12px 12px;
   margin: 5px;
   text-decoration: none;
-  font-size: clamp(9px, 10vw, 20px);
+  /* font-size: clamp(9px, 1.2vw, 20px); */
+  font-size: 20px;
   font-family: "Roboto", sans-serif;
 }
 
@@ -68,6 +75,95 @@ img {
 .topnav .icon {
   display: none;
 }
+/* 
+@media screen and (max-width: 768px) {
+  .topnav a {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+ */
+/* @media screen and (max-width: 768px) */
+@media screen and (max-width: 1140px) {
+  /* 
+    From 1140px and below:
+    - nav menu in row is remove
+    - hamburger icon is displayed
+    - responsive class added
+  */
+  .topnav a {
+    display: none;
+  }
+
+  .topnav.responsive {
+    position: relative;
+  }
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  /* Display hamburger icon */
+  .topnav a.icon {
+    float: right;
+    display: block;
+    color: #ff0018;
+  }
+
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  
+  /* 
+    .topnav.responsive {
+      position: relative;
+    }
+    .topnav.responsive .icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+   */
+}
+
+@media screen and (max-width: 768px) {
+  .topnav a {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 540px) {
+/* 
+  .header-logo {
+    width: 103px;
+  } */
+
+  img {
+   /*  width: 103px; */
+    margin-top: -15px;
+  }
+
+  .topnav a {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+    margin-top: -15px;
+  }
+}
+
+/* ======= E N D  N A V G A T I O N  ==================== */
 
 main {
   font-size: 130%;
@@ -133,9 +229,9 @@ main {
   height: 100%;
   width: 100%;
   overflow: auto;
-  /* background-color: rgba(26, 39, 156, 0.4); */
-  background-color: #fff;
-}
+  background-color: rgba(255, 255, 255, 1); 
+ /*  background-color: #fff; */
+} 
 
 .content {
   margin: 5% auto;
@@ -149,8 +245,6 @@ main {
   position: relative;
   color: #fff;
   padding-top: 10px;
-
-  /* position: relative; */
 }
 
 .modal-body {
@@ -309,10 +403,11 @@ input[data-error]::after {
 /* ========= Confirmation modal Specific CSS ============= */
 .formConfirmationContent {
   margin: 5% auto;
- /*  width: 100%; */
+  /*  width: 100%; */
 
- width: 536px;
- height: 850.61px;
+  width: 536px;
+  height: 90%;
+ /*  height: 850.61px; */
 
   /* min-height: 800px;
   max-width: 500px; */
@@ -341,7 +436,7 @@ input[data-error]::after {
 }
 
 .info h2 {
-  font-family: 'DM Sans', sans-serif; /* var(--font-default);  "DMSans-Regular"; */
+  font-family: "DM Sans", sans-serif; /* var(--font-default);  "DMSans-Regular"; */
   font-size: 36px;
   font-weight: normal 400; /* regular */
   color: #fff;
@@ -444,7 +539,7 @@ input[data-error]::after {
   color: #fff;
   position: relative;
   text-align: left;
-  min-width: 424px;
+  min-width: 354px; /* 414 - 60 (margin r + l) */
 }
 .hero-content::after {
   content: "";
@@ -460,12 +555,14 @@ input[data-error]::after {
   z-index: 1;
 }
 .hero-headline {
-  font-size: 6rem;
+  /* font-size: 6rem; */
+  font-size: clamp(40px, 9vw, 96px);
   font-weight: normal;
   white-space: nowrap;
 }
 .hero-text {
   width: 146%;
+  font-size: clamp(13px, 3vw, 24px); /* */
   font-weight: normal;
   margin-top: 57px;
   padding: 0;
@@ -503,27 +600,35 @@ footer {
   margin: 0 20px;
 }
 
-@keyframes modalopen {
-  from {
-    opacity: 0;
-    transform: translateY(-150px);
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 /* M E D I A  Q U E R I E S */
 
 @media screen and (max-width: 800px) {
+  body {
+    margin: 30px;
+  }
+
+  main {
+    margin: unset;
+    padding: unset;
+    width: 100%;
+  }
+
   .hero-section {
+    width: 100%;
+    /* margin: unset;
+    padding: unset; */
+    margin: 0;
+    padding: 0;
     display: block;
     box-shadow: unset;
   }
   .hero-content {
+    margin: unset;
+    padding: unset;
+    width: 100%;
     background: #fff;
     color: #000;
-    padding: 20px;
+    /*  padding: 20px; */
   }
   .hero-content::after {
     content: unset;
@@ -532,12 +637,20 @@ footer {
     display: none;
   }
   .hero-headline {
-    font-size: 4.5rem;
+    width: 100%;
+    margin: unset;
+    padding: unset;
+    /* font-size: 4.5rem; */
+    /* font-size: 2.5rem; */
     white-space: normal;
   }
   .hero-text {
-    width: unset;
-    font-size: 1.5rem;
+    margin: unset;
+    /*  width: unset;
+    font-size: 1.5rem; */
+    width: 100%;
+   /*  font-size: 0.8125rem; */
+    white-space: normal;
   }
   .hero-img img {
     border-radius: 10px;
@@ -555,7 +668,7 @@ footer {
 }
 
 @media screen and (max-width: 768px) {
-  .topnav.responsive {
+  /*   .topnav.responsive {
     position: relative;
   }
   .topnav.responsive .icon {
@@ -567,56 +680,73 @@ footer {
     float: none;
     display: block;
     text-align: left;
-  }
+  } */
 }
 
 @media screen and (max-width: 768px) {
 
+
+
+  
+  
+
+  /* 
   .topnav a {
     display: none;
   } 
 
-  /* .topnav a.icon {
+  .topnav a.icon {
     color: #ff0018;
-  } */
+  }
 
   .topnav a.icon {
     float: right;
     display: block;
 
     color: #ff0018;
-  }
+  } */
 }
 
 @media screen and (max-width: 540px) {
-  .topnav a {
+  .formConfirmation,
+  .bground {
     display: none;
-  }
-  /* 
-  .topnav a.icon {
-    float: right;
-    display: block;
-    margin-top: -15px;
-  } */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 60px;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    /* overflow-y: hidden; */
+    background-color: rgba(255, 255, 255, 0); 
+   /*  background-color: #fff; */
+   
+  } 
+
 }
 
 @media screen and (max-width: 414px) {
+  /* 
   body {
     margin: 0px 0px;
     padding: 0;
     height: 100%;
   }
-/* 
+   */
+  /* 
   .topnav a.icon {
     color: #ff0018;
   } */
 
+  /*  
   .topnav a.icon {
     float: right;
     display: block;
     margin-top: -15px;
   }
-
+ */
+  /* 
   .hero-content {
     padding: 0;
     width: 100%;
@@ -638,32 +768,43 @@ footer {
     font-size: 13px;
     margin-top: 17px;
   }
-
+ */
+  /* 
   .header-logo img {
     width: 103px;
     height: 19px;
     float: left;
   }
-
+ */
   .formConfirmationContent {
     margin: 5% auto;
-   /*  width: 100%; */
-  /* 
+    /*  width: 100%; */
+    /* 
    width: 536px;
    height: 850.61px; */
   }
 
   .formConfirmation,
   .bground {
-    display: none;
+    /*  display: none;
     position: fixed;
     z-index: 1;
     left: 0;
     top: 79px;
     height: 100%;
     width: 100%;
-    overflow: auto;
+    overflow: auto; */
     /* background-color: rgba(26, 39, 156, 0.4); */
     /* background-color: #fff; */
+  }
+}
+
+@keyframes modalopen {
+  from {
+    opacity: 0;
+    transform: translateY(-150px);
+  }
+  to {
+    opacity: 1;
   }
 }

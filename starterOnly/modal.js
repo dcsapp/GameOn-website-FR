@@ -8,15 +8,24 @@ function editNav() {
 }
 
 // R E S P O N S I V E  L I S T E N E R
-if (window.innerWidth <= 768) {
+/* if (window.innerWidth <= 1140) {
   editNav();
-}
+} */
 
 // U P D A T E  A C T I V E  N A V  L I N K S
 /* const navLinks = document.querySelectorAll(".main-navbar a");
+console.log('Navlinks',navLinks.length);
+for (let i = 0; i < navLinks.length-1; i++) {
+  navLinks[i].addEventListener("click", () => {
+    document.querySelector(".active")?.classList.remove("active");
+    navLinks[i].classList.add("active");
+  });
+} */
+
+/* 
 navLinks.forEach((navLink) => {
   navLink.addEventListener("click", () => {
-    document.querySelector(".active").classList.remove("active");
+    document.querySelector(".active")?.classList.remove("active");
     this.classList.add("active");
   });
 }); */
