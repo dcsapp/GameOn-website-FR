@@ -122,11 +122,17 @@ img {
 }
 
 @media screen and (max-width: 540px) {
-/* 
+
   .header-logo {
     width: 103px;
-  } */
+  }
 
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+    font-size: 14px;
+  }
   img {
    /*  width: 103px; */
    /*  margin-top: -15px; */
@@ -138,6 +144,7 @@ img {
   .topnav a.icon {
     float: right;
     display: block;
+    font-size: 14px;
    /*  margin-top: -15px; */
   }
 }
@@ -646,6 +653,14 @@ footer {
   }
 }
 
+
+
+
+
+
+
+
+
 @media screen and (max-width: 768px) {
   /*   .topnav.responsive {
     position: relative;
@@ -763,20 +778,6 @@ footer {
    height: 850.61px; */
   }
 
-  .formConfirmation,
-  .bground {
-    /*  display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 79px;
-    height: 100%;
-    width: 100%;
-    overflow: auto; */
-    /* background-color: rgba(26, 39, 156, 0.4); */
-    /* background-color: #fff; */
-  }
-}
 
 @keyframes modalopen {
   from {
