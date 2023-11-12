@@ -22,7 +22,6 @@ body {
   margin: 0 auto;
 }
 
-
 p {
   margin-bottom: 0;
   padding: 0.5vw;
@@ -61,13 +60,13 @@ img {
   font-family: "Roboto", sans-serif;
 }
 
-.topnav a:not(.icon):hover {   /*  */
+.topnav a:hover {
   background-color: #ff0000;
   color: #ffffff;
   border-radius: 15px;
 }
 
-.topnav a:not(.icon).active { /*  */
+.topnav a.active {
   background-color: #ff0000;
   color: #ffffff;
   border-radius: 15px;
@@ -76,39 +75,7 @@ img {
 .topnav .icon {
   display: none;
 }
-
-
-/* @media screen and (max-width: 768px) */
-@media screen and (max-width: 1140px) {
-  /* 
-    From 1140px and below:
-    - nav menu in row is remove
-    - hamburger icon is displayed
-    - responsive class added
-  */
-
-  /* Display hamburger icon */
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-    /* color: #ff0018; */
-  }
-}
-
-  /* responsive class added */
-  .topnav.responsive {position: relative;}
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-
+/* 
 @media screen and (max-width: 768px) {
   .topnav a {
     display: none;
@@ -118,14 +85,60 @@ img {
     display: block;
   }
 }
+ */
+/* @media screen and (max-width: 768px) */
+@media screen and (max-width: 1140px) {
+  /* 
+    From 1140px and below:
+    - nav menu in row is remove
+    - hamburger icon is displayed
+    - responsive class added
+  */
+  .topnav a {
+    display: none;
+  }
+
+  .topnav.responsive {
+    position: relative;
+  }
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  /* Display hamburger icon */
+  .topnav a.icon {
+    float: right;
+    display: block;
+    /* color: #ff0018; */
+  }
+
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
 
 @media screen and (max-width: 540px) {
+/* 
+  .header-logo {
+    width: 103px;
+  } */
+
+  img {
+   /*  width: 103px; */
+   /*  margin-top: -15px; */
+  }
+
   .topnav a {
     display: none;
   }
   .topnav a.icon {
     float: right;
     display: block;
+   /*  margin-top: -15px; */
   }
 }
 
@@ -404,7 +417,7 @@ input[data-error]::after {
 .info h2 {
   font-family: "DM Sans", sans-serif; /* var(--font-default);  "DMSans-Regular"; */
   font-size: 36px;
-  font-weight: 400; /* regular */
+  font-weight: 400;
   color: #fff;
   line-height: 142.6%;
   text-align: center;
@@ -415,11 +428,6 @@ input[data-error]::after {
   left: 50%;
   transform: translate(-50%, -50%);
   bottom: 20px;
-}
-
-
-.preventScrolling {
-  overflow: hidden;
 }
 /* ========================================== */
 
@@ -638,6 +646,46 @@ footer {
   }
 }
 
+@media screen and (max-width: 768px) {
+  /*   .topnav.responsive {
+    position: relative;
+  }
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  } */
+}
+
+@media screen and (max-width: 768px) {
+
+
+
+  
+  
+
+  /* 
+  .topnav a {
+    display: none;
+  } 
+
+  .topnav a.icon {
+    color: #ff0018;
+  }
+
+  .topnav a.icon {
+    float: right;
+    display: block;
+
+    color: #ff0018;
+  } */
+}
+
 @media screen and (max-width: 540px) {
   .formConfirmation,
   .bground {
@@ -652,7 +700,82 @@ footer {
     /* overflow-y: hidden; */
     background-color: rgba(255, 255, 255, 0); 
    /*  background-color: #fff; */
+   
   } 
+
+}
+
+@media screen and (max-width: 414px) {
+  /* 
+  body {
+    margin: 0px 0px;
+    padding: 0;
+    height: 100%;
+  }
+   */
+  /* 
+  .topnav a.icon {
+    color: #ff0018;
+  } */
+
+  /*  
+  .topnav a.icon {
+    float: right;
+    display: block;
+    margin-top: -15px;
+  }
+ */
+  /* 
+  .hero-content {
+    padding: 0;
+    width: 100%;
+  }
+
+  .hero-section {
+    min-height: 500px;
+  }
+
+  .hero-headline {
+    margin-top: 27px;
+    text-align: left;
+    width: 100%;
+    font-size: 40px;
+    white-space: normal;
+  }
+
+  p.hero-text {
+    font-size: 13px;
+    margin-top: 17px;
+  }
+ */
+  /* 
+  .header-logo img {
+    width: 103px;
+    height: 19px;
+    float: left;
+  }
+ */
+  .formConfirmationContent {
+    margin: 5% auto;
+    /*  width: 100%; */
+    /* 
+   width: 536px;
+   height: 850.61px; */
+  }
+
+  .formConfirmation,
+  .bground {
+    /*  display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 79px;
+    height: 100%;
+    width: 100%;
+    overflow: auto; */
+    /* background-color: rgba(26, 39, 156, 0.4); */
+    /* background-color: #fff; */
+  }
 }
 
 @keyframes modalopen {

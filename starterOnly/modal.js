@@ -8,9 +8,27 @@ function editNav() {
 }
 
 // R E S P O N S I V E  L I S T E N E R
-if (window.innerWidth <= 1140) {
+/* if (window.innerWidth <= 1140) {
   editNav();
-}
+} */
+
+// U P D A T E  A C T I V E  N A V  L I N K S
+/* const navLinks = document.querySelectorAll(".main-navbar a");
+console.log('Navlinks',navLinks.length);
+for (let i = 0; i < navLinks.length-1; i++) {
+  navLinks[i].addEventListener("click", () => {
+    document.querySelector(".active")?.classList.remove("active");
+    navLinks[i].classList.add("active");
+  });
+} */
+
+/* 
+navLinks.forEach((navLink) => {
+  navLink.addEventListener("click", () => {
+    document.querySelector(".active")?.classList.remove("active");
+    this.classList.add("active");
+  });
+}); */
 
 // D O M  E L E M E N T S
 const modalbg = document.querySelector(".bground");
@@ -26,15 +44,11 @@ const formInput = document.querySelectorAll("input");
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
 // launch modal form
-// Prevent body scrolling when modal is open
-// (for width=536px and below)
-const body = document.querySelector("body");
 function launchModal() {
   modalbg.style.display = "block";
-  body.style.overflow= "hidden";
 }
 
-// Trigger closeModal() function when modal is closed without updating
+// close modal without updating
 // 1-Select close button
 const closeModalBtn = document.querySelectorAll(".close");
 // 2-Add an eventListener to each button/.close to trigger function closeModal()
@@ -42,12 +56,9 @@ closeModalBtn.forEach(function (btn) {
   btn.addEventListener("click", closeModal);
 });
 
-// Close modal and reinstate scrolling in body
 function closeModal() {
   this.parentElement.parentElement.style.display = "none";
-  body.style.overflow= "auto";
 }
-
 // Button handling
 function closeConfirmationModal() {
   modalConfirmation.style.display = "none";
