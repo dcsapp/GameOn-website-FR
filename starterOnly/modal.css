@@ -20,6 +20,7 @@ body {
   font-size: 18px;
   max-width: 1300px;
   margin: 0 auto;
+
 }
 
 p {
@@ -214,6 +215,7 @@ main {
   height: 100%;
   width: 100%;
   overflow: auto;
+  /* overflow-y: hidden; */
   background-color: rgba(255, 255, 255, 1);
   /*  background-color: #fff; */
 }

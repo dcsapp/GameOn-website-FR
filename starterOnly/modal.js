@@ -39,13 +39,41 @@ const modalContent = document.querySelector(".modal-body");
 const modalConfirmation = document.querySelector(".formConfirmation");
 const formInput = document.querySelectorAll("input");
 
+
+
+
 // B U T T O N S
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
+// Scrolling handling
+function bodyScrolling(status) {
+  /* 
+  used by:                          status:
+  - launchModal()               --> hidden 
+  - closeModal()                --> hidden
+  - closeConfirmationModal()    --> auto
+  */
+  const bodyWhenModalOpen = document.querySelector("body");
+  bodyWhenModalOpen.style.overflow = status;
+}
+
+// Form reset
+function resetForm() {
+  /* 
+  used by:                          
+  - closeModal()   click on X for both cases:
+                    1/ when aborting form fullfill and 
+                    2/ Confirmation mdal             
+  - closeConfirmationModal()  click "Fermer" button 
+  */
+  document.querySelector("form").reset();
+}
+
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
+  bodyScrolling("hidden");
 }
 
 // close modal without updating
@@ -58,10 +86,14 @@ closeModalBtn.forEach(function (btn) {
 
 function closeModal() {
   this.parentElement.parentElement.style.display = "none";
+  bodyScrolling("auto");
+  resetForm();
 }
 // Button handling
 function closeConfirmationModal() {
   modalConfirmation.style.display = "none";
+  bodyScrolling("auto");
+  resetForm()
 }
 // Confirmation modal
 const btnCloseConfirmation = document.querySelector(".btn-closeConfirmation");
@@ -97,6 +129,7 @@ function dobValidation(minAge, dob) {
   }
 }
 
+/* function validate() { */
 function validate() {
   /* Retrieve input fields */
   let firstname = document.getElementById("first");
@@ -104,7 +137,7 @@ function validate() {
   let email = document.getElementById("email");
   let birthdate = document.getElementById("birthdate");
   let quantity = document.getElementById("quantity");
-
+  
   /* retrieve each field value */
   let firstnameValue = firstname.value.trim();
   let lastnameValue = lastname.value.trim();
@@ -112,7 +145,7 @@ function validate() {
   let birthdateValue = birthdate.value;
   let quantityValue = quantity.value.trim();
   /* let location = document.getElementById("location").value; */
-
+  
   let errorMessage = "";
   /* Firstname validation: min caracteres = 2 */
   /* console.log("field input",input.firstname) */
